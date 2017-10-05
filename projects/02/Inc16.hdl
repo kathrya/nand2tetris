@@ -14,4 +14,8 @@ CHIP Inc16 {
 
     PARTS:
    // Put you code here:
+   Not(in=in[0], out=nota0);
+   Or(a=in[0], b=nota0, out=true);
+   Not(in=true, out=false);
+   Add16(a=in, b[0]=true, b[1..15]=false, out=out);
 }

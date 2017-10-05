@@ -1,0 +1,16 @@
+
+/**
+ * Negativity Checker: 
+ * out = 1 if input is negitive, 0 otherwise
+ */
+
+CHIP NegCheck {
+    IN in[16];
+    OUT out;
+
+    PARTS:
+    // Put your code here:
+   Not(in=in[0], out=notIn);
+   Or(a=in[0], b=notIn, out=true);	
+   And(a=in[15], b=true, out=out);
+}

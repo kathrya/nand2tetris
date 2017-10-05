@@ -43,4 +43,27 @@ CHIP ALU {
 
     PARTS:
    // Put you code here:
+//First, we would like true
+   Not(in=x[0], out=notx0);
+   Or(a=x[0], b=notx0, out=true);
+//Now we start with the first 4 bits
+   Zero16(in=x, out=zOnx);
+   Not16(in=x, out=nOnx);
+   Not16(in=zOnx, out=znOnx);
+   Mux4Way16(a=x, b=nOnx, c=zOnx, d=znOnx, sel[0]=nx, sel[1]=zx, out=xDone);
+   Zero16(in=y, out=zOny);
+   Not16(in=y, out=nOny);
+   Not16(in=zOny, out=znOny);
+   Mux4Way16(a=y, b=nOny, c=zOny, d=znOny, sel[0]=ny, sel[1]=zy, out=yDone);
+//Then the final 2
+   And16(a=xDone, b=yDone, out=xAndy);
+   Add16(a=xDone, b=yDone, out=xPlusy);
+   Mux16(a=xAndy, b=xPlusy, sel=f, out=outb);
+   Not16(in=outb, out=notOutb);
+   Mux16(a=outb, b=notOutb, sel=no, out=output);
+   Clone16(in=output, out=out);
+//Finally calibrate the other outputs
+   Or16Way(in=output, out=notzr);
+   Not(in=notzr, out=zr);
+   NegCheck(in=output, out=ng);
 }
