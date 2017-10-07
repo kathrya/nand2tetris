@@ -40,4 +40,61 @@ CHIP CPU {
 
     PARTS:
     // Put your code here:
+// define true
+   Zero(in=inM[0], out=false);
+   Not(in=false, out=true);
+   
+// Starting with the decoder - aLoad in MSB is 0
+   Nor(a=instruction[15], b=false, out=instLoad);
+   
+// Otherwise translate other instruction bits
+   And(a=instruction[15], b=instruction[12], out=mux2Sel);
+   And(a=instruction[15], b=instruction[11], out=zx);
+   And(a=instruction[15], b=instruction[10], out=nx);
+   And(a=instruction[15], b=instruction[9], out=zy);
+   And(a=instruction[15], b=instruction[8], out=ny);
+   And(a=instruction[15], b=instruction[7], out=f);
+   And(a=instruction[15], b=instruction[6], out=no);
+   And(a=instruction[15], b=instruction[5], out=aluALoad);
+   And(a=instruction[15], b=instruction[4], out=aluDLoad);
+   And(a=instruction[15], b=instruction[3], out=aluMLoad);
+   And(a=instruction[15], b=instruction[2], out=j1);
+   And(a=instruction[15], b=instruction[1], out=j2);
+   And(a=instruction[15], b=instruction[0], out=j3);
+   	
+// Mux1
+   Mux16(a=aluOut, b=instruction, sel=instLoad, out=aIn);
+   
+// A register
+   Or(a=instLoad, b=aluALoad, out=aLoad);
+   ARegister(in=aIn, load=aLoad, out=aOut);
+   
+// Mux2
+   Mux16(a=aOut, b=inM, sel= mux2Sel, out=aOrmOut);
+   
+// ALU
+   ALU(y=aOrmOut, x=dOut, zx=zx, nx=nx, zy=zy, ny=ny, f=f, no=no, out=aluOut, zr=zr, ng=ng);	
+   
+// D register
+   DRegister(in=aluOut, load=aluDLoad, out=dOut);
+   
+// Jump logic
+   Not(in=ng, out=notNg);
+   Not(in=zr, out=notZr);
+   And(a=notNg, b=notZr, out=pos);
+   And(a=j1, b=ng, out=jmp1);
+   And(a=j2, b=zr, out=jmp2);
+   And(a=j3, b=pos, out=jmp3);
+   Or(a=jmp1, b=jmp2, out=jmp4);
+   Or(a=jmp3, b=jmp4, out=loadJMP);
+
+// outM = aluOut
+   Clone16(in=aluOut, out=outM);
+// addressM = aOut
+   Strip15(in=aOut, out=addressM);
+// writeM = aluMLoad
+   Clone(in=aluMLoad, out=writeM);
+// Finally, the PC
+   PC(in=aOut, load=loadJMP, inc=true, reset=reset, out=pcPlus);
+   Strip15(in=pcPlus, out=pc);
 }
