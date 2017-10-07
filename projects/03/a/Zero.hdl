@@ -1,0 +1,14 @@
+/**
+ * Zero-er:
+ * out = 0
+ */
+
+CHIP Zero {
+    IN in;
+    OUT out;
+
+    PARTS:
+   // Put you code here:
+   Not(in=in, out=notIn);
+   And(a=in, b=notIn, out=out);
+}

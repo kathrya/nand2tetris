@@ -1,0 +1,29 @@
+/**
+ * 16-bit Zero-er:
+ * out = Zero
+ */
+
+CHIP Zero16 {
+    IN in[16];
+    OUT out[16];
+
+    PARTS:
+   // Put you code here:
+	Zero(in = in[0], out=out[0]);
+	Zero(in = in[0], out=out[1]);
+	Zero(in = in[0], out=out[2]);
+	Zero(in = in[0], out=out[3]);
+	Zero(in = in[0], out=out[4]);
+	Zero(in = in[0], out=out[5]);
+	Zero(in = in[0], out=out[6]);
+	Zero(in = in[0], out=out[7]);
+	Zero(in = in[0], out=out[8]);
+	Zero(in = in[0], out=out[9]);
+	Zero(in = in[0], out=out[10]);
+	Zero(in = in[0], out=out[11]);
+	Zero(in = in[0], out=out[12]);
+	Zero(in = in[0], out=out[13]);
+	Zero(in = in[0], out=out[14]);
+	Zero(in = in[0], out=out[15]);
+	
+}

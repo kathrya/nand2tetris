@@ -17,4 +17,17 @@ CHIP PC {
 
     PARTS:
     // Put your code here:
+//We need true, later in the script
+   Zero(in=in[0], out=false);
+   Not(in=false, out=true);
+//Go through options in reverse
+   Clone16(in=loop, out=pos1);
+   Inc16(in=loop, out=pos2);
+   Mux16(a=pos1, b=pos2, sel=inc, out=pos3);
+   Mux16(a=pos3, b=in, sel=load, out=pos4);
+   Zero16(in=loop, out=zero);
+   Mux16(a=pos4, b=zero, sel=reset, out=bitIn);	
+//Then apply to the register
+   Register(in=bitIn, load=true, out=loop);
+   Clone16(in=loop, out=out);
 }

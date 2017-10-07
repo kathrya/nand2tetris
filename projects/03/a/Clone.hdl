@@ -1,0 +1,13 @@
+/**
+ * Clone-er:
+ * out = in
+ */
+
+CHIP Clone {
+    IN in;
+    OUT out;
+
+    PARTS:
+   // Put you code here:
+   And(a=in, b=in, out=out);
+}
