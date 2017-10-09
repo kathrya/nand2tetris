@@ -1,0 +1,7 @@
+C:\Users\Catherine-PC\Documents\GitHub\nand2tetris\projects\06\Assembler\Assembler\obj\Debug\Assembler.csprojResolveAssemblyReference.cache
+C:\Users\Catherine-PC\Documents\GitHub\nand2tetris\projects\06\Assembler\Assembler\obj\Debug\Assembler.csproj.CoreCompileInputs.cache
+C:\Users\Catherine-PC\Documents\GitHub\nand2tetris\projects\06\Assembler\Assembler\bin\Debug\Assembler.exe.config
+C:\Users\Catherine-PC\Documents\GitHub\nand2tetris\projects\06\Assembler\Assembler\bin\Debug\Assembler.exe
+C:\Users\Catherine-PC\Documents\GitHub\nand2tetris\projects\06\Assembler\Assembler\bin\Debug\Assembler.pdb
+C:\Users\Catherine-PC\Documents\GitHub\nand2tetris\projects\06\Assembler\Assembler\obj\Debug\Assembler.exe
+C:\Users\Catherine-PC\Documents\GitHub\nand2tetris\projects\06\Assembler\Assembler\obj\Debug\Assembler.pdb
